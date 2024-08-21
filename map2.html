@@ -75,15 +75,17 @@
 			// map.setStreetView(panorama);
 		}
 
-		window.addEventListener("message", (e) => {
-			const {
-				lag,
-				lng
-			} = e.data
+		const url = new URL(window.location.href);
 
+		// 使用 URLSearchParams 对象获取查询参数
+		const queryParams = new URLSearchParams(url.search);
+
+		// 获取特定的查询参数值
+		const paramValue = queryParams.get('data');
+
+		const {lag,lng}=JSON.parse(paramValue);
 			initialize(parseFloat(lag), parseFloat(lng))
 
-		}, false)
 
 		window.initialize = initialize;
 	</script>
